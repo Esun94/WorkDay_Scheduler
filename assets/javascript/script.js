@@ -44,53 +44,53 @@ $(document).ready(function () {
     }
     console.log(moment());
     setInterval(displayTime,1000);
-
-    // function to listen for click events on page
-    $('.saveBtn').on('click', function(event) {
-        event.preventDefault();
-        //grab the saved event options
-         // create variables to save user input and time
-        var userEvent = {
-            event: $('#text-area').value,
-            hour: $('.hour').value
-        }; 
-        
-        //save to local storage
-        localStorage.setItem("userEvent", JSON.stringify(userEvent));
-        
-        //alert user that items have been saved to localStorage
-        renderMessage()
-        // create timeOut Value that removes save alert
-    });
-
-    // function renderMessage() {
-    function renderMessage() {
-        var saveDone = JSON.parse(localStorage.getItem("userEvent"))
-        if (saveDone !== null) {
-            alert('Saved to Local Storage');
-        };
+    
+    // comparing Current Time to Time Slot Rows
+    for (let i=0; i < hours.length; i++) {
+        var currentTime = moment().format("h a");
+        console.log(currentTime);
+        // color change depending on current time vs. time slot
+        if (hours[i].time.isSame(moment(), "hour")) {
+            hours[i].lookup.addClass("present");
+        }
+        else if (hours[i].time < moment()) {
+            hours[i].lookup.addClass("past");
+        }
+        else if (hours[i].time > moment()) {
+            hours[i].lookup.addClass("future");
+        }
     };
 
+// EventListner for buttons
+    $(":button").on("click", function(event){
+        var textValue = $(this).siblings(".description").val();
+        var idValue = $(this).siblings(".description").attr("id");
+    
+        localStorage.setItem(idValue,textValue);
+    
+        savedMessage.text("The task has been saved!");
+        
+        setTimeout(function(){
+            savedMessage.text("");
+    
+        }, 3000);
+    
+    });
 
+    function scheduleTasks() {
+        // getItem has to use strings to pull data back in so made a separate array to pull from.
+        var timeSlotEL = [ "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm" ];
+    
+        for (let i=0; i < timeSlotEL.length; i++) {
+            var savedItem = localStorage.getItem(timeSlotEL[i]);
+    
+            if (timeSlotEL[i]) {
+              hours[i].lookup.text(savedItem);
+            }
+        }
+    }
 
-
-    // Create time updater function()
-    //get current time
-
-    // create our loop to go over all the (html)time blocks (compare ids)
-
-    // if else statement to...
-    // check to see if we passed out time
-    // check out removeClass and addClass
-    // check to see if current hour matches (html time)physical hour
-
-    // check to see if the time is in the future
-
-
-    // retrieve local storage and render items to correct rows
-
-
-
-
+    scheduleTasks();
 
 })
+    
