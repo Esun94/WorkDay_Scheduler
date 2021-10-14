@@ -2,10 +2,24 @@
 $(document).ready(function () {
 
     // var currentDate = moment().format("MMMM, Do YYYY");
-    // $("#currentDay").text(currentDate);
+    // $("#currentTime").text(currentDate);
     // var inputEl = document.querySelector("#text-area");
     // var saveBtnEL = $('.saveBtn');
+    var dateTimeEl = $("#currentTime");
 
+    var am8 = $("#8am");
+    var am9 = $("#9am9");
+    var am10 = $("#10am");
+    var am11 = $("#11am");
+    var pm12 = $("#12pm");
+    var pm1 = $("#1pm");
+    var pm2 = $("#2pm");
+    var pm3 = $("#3pm");
+    var pm4 = $("#4pm");
+    var pm5 = $("#5pm");
+    var pm6 = $("#6pm");
+
+    var savedMessage = $("#savedMessage");
     // function to listen for click events on page
     $('.saveBtn').on('click', function(event) {
         event.preventDefault();
