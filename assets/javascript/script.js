@@ -14,7 +14,8 @@ $(document).ready(function () {
         var userEvent = {
             event: $('#text-area').value,
             hour: $('.hour').value
-        };
+        }; 
+        
         //save to local storage
         localStorage.setItem("userEvent", JSON.stringify(userEvent));
         
