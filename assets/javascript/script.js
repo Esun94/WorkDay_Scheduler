@@ -20,6 +20,31 @@ $(document).ready(function () {
     var pm6 = $("#6pm");
 
     var savedMessage = $("#savedMessage");
+
+    var hours = [
+        {time: moment("8 am", "h a"), lookup: am8},
+        {time: moment("9 am", "h a"), lookup: am9},
+        {time: moment("10 am", "h a"), lookup: am10},
+        {time: moment("11 am", "h a"), lookup: am11},
+        {time: moment("12 pm", "h a"), lookup: pm12},
+        {time: moment("1 pm", "h a"), lookup: pm1},
+        {time: moment("2 pm", "h a"), lookup: pm2},
+        {time: moment("3 pm", "h a"), lookup: pm3},
+        {time: moment("4 pm", "h a"), lookup: pm4},
+        {time: moment("5 pm", "h a"), lookup: pm5},
+        {time: moment("6 pm", "h a"), lookup: pm6}
+    ];
+    
+    console.log(moment().startOf('hour').format("h a"));
+
+    // show clock and date under header
+    function displayTime() {
+        var time = moment().format("MMMM Do, YYYY[\n]hh:mm:ss a");
+        dateTimeEl.text(time);
+    }
+    console.log(moment());
+    setInterval(displayTime,1000);
+
     // function to listen for click events on page
     $('.saveBtn').on('click', function(event) {
         event.preventDefault();
